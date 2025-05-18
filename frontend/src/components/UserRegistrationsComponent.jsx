@@ -57,8 +57,10 @@ const UserRegistrationsComponent = () => {
           },
         };
         
+        const API_URL = import.meta.env.VITE_API_URL || '';
+
         // Use DELETE request to completely remove the registration
-        await axios.delete(`/api/registrations/${id}`, config);
+        await axios.delete(`${API_URL}/api/registrations/${id}`, config);
         
         // Remove from local state
         setRegistrations(registrations.filter(reg => reg._id !== id));
