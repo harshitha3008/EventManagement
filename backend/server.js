@@ -15,7 +15,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: ["https://deploy-mern-1whq.vercel.app"],
+  origin: ["http://localhost:5173"],
   methods:["POST", "GET"],// Your frontend URL
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
