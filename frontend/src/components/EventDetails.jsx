@@ -8,6 +8,9 @@ const EventDetails = () => {
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
+  // Get API URL from environment variables
+  const API_URL = import.meta.env.VITE_API_URL || '';
 
   useEffect(() => {
     const fetchEventDetails = async () => {
@@ -15,7 +18,8 @@ const EventDetails = () => {
         setLoading(true);
         const token = localStorage.getItem('token');
         
-        const response = await fetch(`/api/events/${id}`, {
+        // Use the full API URL for the fetch request
+        const response = await fetch(`${API_URL}/api/events/${id}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -28,6 +32,7 @@ const EventDetails = () => {
         const data = await response.json();
         setEvent(data);
       } catch (err) {
+        console.error('Error fetching event:', err);
         setError(err.message || 'An error occurred');
       } finally {
         setLoading(false);
@@ -37,13 +42,11 @@ const EventDetails = () => {
     if (id) {
       fetchEventDetails();
     }
-  }, [id]);
+  }, [id, API_URL]);
 
   const handleBack = () => {
     navigate('/view-events');
   };
-
-  const API_URL = import.meta.env.VITE_API_URL;
 
   const getImageUrl = (imageUrl) => {
     if (!imageUrl) return null;
