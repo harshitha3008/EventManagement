@@ -7,6 +7,7 @@ import { getSubEvents } from "../services/eventForm";
 // Import our new RegistrationForm component
 import RegistrationForm from "./RegistrationForm";
 import UserRegistrationsComponent from "./UserRegistrationsComponent";
+const API_URL = import.meta.env?.VITE_API_URL || '';
 
 const UserEventsComponent = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -36,7 +37,7 @@ const UserEventsComponent = () => {
   const fetchEventDetails = async (category) => {
     setLoading(true);
     try {
-      const response = await axios.get(`/api/events/fetchByCategory?category=${encodeURIComponent(category)}`);
+      const response = await axios.get(`${API_URL}/api/events/fetchByCategory?category=${encodeURIComponent(category)}`);
       setEventDetails(response.data);
     } catch (error) {
       console.error("Error fetching event details:", error);
