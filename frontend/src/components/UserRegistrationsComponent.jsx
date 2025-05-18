@@ -30,8 +30,10 @@ const UserRegistrationsComponent = () => {
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      
-      const { data } = await axios.get("/api/registrations", config);
+
+
+      const API_URL = import.meta.env.VITE_API_URL || '';
+      const { data } = await axios.get(`${API_URL}/api/registrations`, config);
       setRegistrations(data);
     } catch (err) {
       setError(

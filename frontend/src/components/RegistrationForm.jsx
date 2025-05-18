@@ -53,8 +53,9 @@ useEffect(() => {
             Authorization: `Bearer ${userInfo.token}`,
           },
         };
+        const API_URL = import.meta.env.VITE_API_URL || '';
         
-        const { data } = await axios.get("/api/users/profile", config);
+        const { data } = await axios.get(`${API_URL}/api/users/profile`, config);
         
         setUserData(data);
         
