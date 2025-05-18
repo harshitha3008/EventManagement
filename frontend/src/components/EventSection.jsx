@@ -10,6 +10,8 @@ export default function EventSection({ onClose }) {
   const [selectedEventDetail, setSelectedEventDetail] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const API_URL = import.meta.env?.VITE_API_URL || '';
+
   // Main event categories
   const events = [
     { title: "cultural", img: "../non-technical.jpeg" },
@@ -45,7 +47,7 @@ export default function EventSection({ onClose }) {
   const fetchEventDetails = async (category) => {
     setLoading(true);
     try {
-      const response = await axios.get(`/api/events/fetchByCategory?category=${encodeURIComponent(category)}`);
+      const response = await axios.get(`${API_URL}/api/events/fetchByCategory?category=${encodeURIComponent(category)}`);
       setEventDetails(response.data);
     } catch (error) {
       console.error("Error fetching event details:", error);
