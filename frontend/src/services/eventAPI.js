@@ -129,7 +129,7 @@ export const fetchEventDetails = async (eventId) => {
   try {
     const token = getAuthToken();
     
-    const response = await fetch(`https://mahotsav-backend.vercel.app/api/events/${eventId}`, {
+    const response = await fetch(`https://mahotsav-backend.vercel.app/api/event-details/${eventId}`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
