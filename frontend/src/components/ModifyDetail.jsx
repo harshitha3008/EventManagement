@@ -13,8 +13,6 @@ const ModifyDetail = () => {
   const [categories, setCategories] = useState([]);
   const [viewMode, setViewMode] = useState(id ? 'detail' : 'list');
 
-  const API_URL = import.meta.env.VITE_API_URL || '';
-
   useEffect(() => {
     // If we have an ID parameter, we're in detail view mode
     setViewMode(id ? 'detail' : 'list');
